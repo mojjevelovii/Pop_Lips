@@ -1,4 +1,4 @@
-package com.geekbrains.mvp;
+package com.geekbrains.mvp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,9 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.geekbrains.mvp.R;
+import com.geekbrains.mvp.presenter.Presenter;
+
 public class MainActivity extends AppCompatActivity implements MainView, View.OnClickListener {
 
-    /** Android Views **/
     private TextView tv1;
     private Button btnCounter1;
     private TextView tv2;
@@ -39,19 +41,30 @@ public class MainActivity extends AppCompatActivity implements MainView, View.On
 
     @Override
     public void onClick(View view) {
-        mPresenter.buttonClick(view.getId());
+        switch (view.getId()) {
+            case R.id.btnCounter1:
+                mPresenter.buttonClick(Presenter.ButtonIndex.ONE);
+                break;
+            case R.id.btnCounter2:
+                mPresenter.buttonClick(Presenter.ButtonIndex.TWO);
+                break;
+            case R.id.btnCounter3:
+                mPresenter.buttonClick(Presenter.ButtonIndex.THREE);
+                break;
+        }
+
     }
 
     @Override
-    public void setButtonText(int btnIndex, int value) {
+    public void setButtonText(Presenter.ButtonIndex btnIndex, int value) {
         switch (btnIndex) {
-            case 1:
+            case ONE:
                 btnCounter1.setText("Количество = " + value);
                 break;
-            case 2:
+            case TWO:
                 btnCounter2.setText("Количество = " + value);
                 break;
-            case 3:
+            case THREE:
                 btnCounter3.setText("Количество = " + value);
                 break;
         }

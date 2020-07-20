@@ -1,4 +1,4 @@
-package com.geekbrains.mvp;
+package com.geekbrains.mvp.model;
 
 import java.util.ArrayList;
 import java.util.List;
